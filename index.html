@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cetak Cantik Pink</title>
+    <link rel="stylesheet" href="nana.css">
+</head>
+<body>
+    <header>
+        <h1>Cetak Cantik Pink</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#produk">Produk</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </nav>
+        <div class="cart">
+            <a href="#" id="cart-link">🛒 Keranjang (<span id="cart-count">0</span>)</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="home">
+            <h2>Selamat Datang!</h2>
+            <p>Temukan produk percetakan terbaik kami!</p>
+        </section>
+
+        <section id="produk">
+            <h2>Produk Kami</h2>
+            <div class="produk-container">
+                <div class="produk-card" data-name="Stiker" data-price="5000">
+                    <img src="images/stiker.jpg" alt="Stiker">
+                    <h3>Stiker</h3>
+                    <p>Harga: Rp 5.000</p>
+                    <button class="add-to-cart">Tambah ke Keranjang</button>
+                </div>
+                <div class="produk-card" data-name="Kartu Nama" data-price="3000">
+                    <img src="images/kartunama.jpg" alt="Kartu Nama">
+                    <h3>Kartu Nama</h3>
+                    <p>Harga: Rp 3.000</p>
+                    <button class="add-to-cart">Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="kontak">
+            <h2>Kontak Kami</h2>
+            <p>Hubungi kami melalui:</p>   
+            <ul>
+                <li>Telepon: 0895708304600</li>
+                <li>Email: <a href="mailto:altr.nana4@gmail.com">altr.nana4@gmail.com</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Modal Pop-Up Keranjang -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-modal-content">
+            <h2>Keranjang Belanja</h2>
+            <ul id="cart-items"></ul>
+            <div class="cart-actions">
+                <button id="clear-cart">Kosongkan Keranjang</button>
+                <button id="close-cart">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Cetak Cantik Pink. Semua hak cipta dilindungi.</p>
+    </footer>
+
+    <script>
+        const cartLink = document.getElementById("cart-link");
+        const cartCount = document.getElementById("cart-count");
+        const cartModal = document.getElementById("cart-modal");
+        const closeCart = document.getElementById("close-cart");
+        const clearCart = document.getElementById("clear-cart");
+        const cartItemsList = document.getElementById("cart-items");
+        let cart = [];
+
+        function addToCart(productName, productPrice) {
+            cart.push({ name: productName, price: productPrice });
+            updateCartCount();
+            updateCartItems();
+        }
+
+        function removeFromCart(productName) {
+            cart = cart.filter(item => item.name !== productName);
+            updateCartCount();
+            updateCartItems();
+        }
+
+        function updateCartCount() {
+            cartCount.textContent = cart.length;
+        }
+
+        function updateCartItems() {
+            cartItemsList.innerHTML = '';
+            cart.forEach((item, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${item.name} - Rp ${item.price}`;
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Hapus';
+                removeButton.onclick = () => {
+                    removeFromCart(item.name);
+                    updateProductButton(item.name, true);  // Set the button back to "Tambah ke Keranjang"
+                };
+                listItem.appendChild(removeButton);
+                cartItemsList.appendChild(listItem);
+            });
+        }
+
+        function updateProductButton(productName, isAdd) {
+            const productCards = document.querySelectorAll('.produk-card');
+            productCards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                const button = card.querySelector('.add-to-cart');
+                if (name === productName) {
+                    if (isAdd) {
+                        button.textContent = "Tambah ke Keranjang";
+                    } else {
+                        button.textContent = "Hapus dari Keranjang";
+                    }
+                }
+            });
+        }
+
+        const addButtons = document.querySelectorAll(".add-to-cart");
+        addButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                const productCard = button.closest(".produk-card");
+                const productName = productCard.getAttribute("data-name");
+                const productPrice = productCard.getAttribute("data-price");
+
+                if (button.textContent === "Tambah ke Keranjang") {
+                    addToCart(productName, productPrice);
+                    button.textContent = "Hapus dari Keranjang";
+                } else {
+                    removeFromCart(productName);
+                    button.textContent = "Tambah ke Keranjang";
+                }
+            });
+        });
+
+        cartLink.addEventListener("click", function() {
+            cartModal.style.display = "flex";
+        });
+
+        closeCart.addEventListener("click", function() {
+            cartModal.style.display = "none";
+        });
+
+        clearCart.addEventListener("click", function() {
+            cart = [];
+            updateCartCount();
+            updateCartItems();
+        });
+    </script>
+</body>
+</html>

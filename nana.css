@@ -1,0 +1,313 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFE4E1;
+}
+
+header {
+    background-color: #FFA6C9;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin: 0 15px;
+    display: inline-block;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.cart {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#cart-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    background-color: #ff1493;
+    padding: 10px 15px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+#cart-link:hover {
+    background-color: #ff6f91;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+section {
+    background-color: #FFA6C9;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 80%;
+    text-align: center;
+}
+
+#home {
+    background-color: #ff6f91;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    width: 85%;
+    max-width: 1200px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+#home h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+#home p {
+    font-size: 1.4rem;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+#home .cta-button {
+    background-color: #ff1493;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#home .cta-button:hover {
+    background-color: #ff6f91;
+    transform: scale(1.05);
+}
+
+#produk {
+    background-color: #ff6f91;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    width: 85%;
+    max-width: 1200px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.produk-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 0 10px;
+}
+
+.produk-card {
+    background-color: white;
+    border-radius: 12px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.produk-card:hover {
+    transform: scale(1.05);
+}
+
+.produk-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.produk-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 10px 0;
+    color: #333;
+}
+
+.produk-card p {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 10px 0;
+}
+
+button.add-to-cart {
+    background-color: #ff1493;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.add-to-cart:hover {
+    background-color: #ff6f91;
+    transform: scale(1.05);
+}
+
+/* Modal Pop-Up */
+.cart-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.cart-modal-content {
+    background-color: #fff;
+    padding: 40px 60px;
+    border-radius: 15px;
+    width: 700px;
+    max-width: 90%;
+    box-shadow: 0 6px 40px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+#cart-items {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+#cart-items li {
+    margin: 15px 0;
+    font-size: 1.3rem;
+    color: #333;
+}
+
+#cart-items button {
+    background-color: #ff1493;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#cart-items button:hover {
+    background-color: #ff6f91;
+}
+
+.cart-actions button {
+    background-color: #ff1493;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 1.1rem;
+}
+
+.cart-actions button:hover {
+    background-color: #ff6f91;
+}
+
+footer {
+    background-color: #FFA6C9;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+
+#kontak {
+    background-color: #ff6f91;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    width: 85%;
+    max-width: 1200px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+#kontak h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+#kontak p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #fff;
+    font-weight: 500;
+}
+
+#kontak ul {
+    list-style: none;
+    padding: 0;
+}
+
+#kontak ul li {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+#kontak ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+#kontak ul li a:hover {
+    color: #ff1493;
+    font-weight: 700;
+}
